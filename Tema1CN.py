@@ -137,13 +137,13 @@ def x_calculus():
 pi=np.math.pi
 def x_calculus_sin(x):
     y= x*4/pi
-   # print("sin(x) =  ", end="")
+
     rez_sin = all_polynom(y, "sin")
     return rez_sin
 
 def x_calculus_cos(x):
     y=x*4/pi
-    #print("cos(x) = ", end="")
+
     rez_cos = all_polynom(y, "cos")
     return rez_cos
 
@@ -182,8 +182,13 @@ def reducere_x_sin(x):
         print("Eroarea dintre cele doua valori este :", np.abs(dif))
 
     if x >= 2*pi :
-        sin_x = x_calculus_sin(x%(2*pi))
         sin_matematic = np.sin(x)
+
+        while (x >= 2 * pi):
+            x = x % (2 * pi)
+
+        sin_x = x_calculus_sin(x)
+
         dif = sin_x - sin_matematic
         print("Aproximarea folosind formule de reducere:", sin_x)
         print("Rezultatul matematic:", sin_matematic)
@@ -226,8 +231,12 @@ def reducere_x_cos(x):
         print("Eroarea dintre cele doua valori este :", np.abs(dif))
 
     if x >= 2 * pi:
-        cos_x = x_calculus_sin(x % (2 * pi))
         cos_matematic = np.cos(x)
+
+        while( x>=2*pi):
+            x=x%(2*pi)
+        cos_x = x_calculus_cos(x)
+
         dif = cos_x - cos_matematic
         print("Aproximarea folosind formule de reducere:", cos_x)
         print("Rezultatul matematic:", cos_matematic)
@@ -250,7 +259,7 @@ if __name__ == '__main__':
     print("")
     #BONUS:
     print("Bonus: Calcul sin:")
-    print(reducere_x_sin(0))
+    print(reducere_x_sin(5*pi))
     print("")
     print("Bonus: Calcul cos:")
-    print(reducere_x_cos(0))
+    print(reducere_x_cos(5*pi))
